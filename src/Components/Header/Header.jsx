@@ -1,9 +1,10 @@
+import Navbar from "./Navbar";
 
 
 const Header = () => {
     return (
         <div>
-            <h2>header</h2>
+            <Navbar></Navbar>
         </div>
     );
 };
