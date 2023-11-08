@@ -1,12 +1,20 @@
+import { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../Provider/AuthProvider";
 
 
 const Navbar = () => {
+    const { user, logOut } = useContext(AuthContext)
+    const handleLogOut = () => {
+        logOut()
+            .then(() => console.log('User logged out succesfully'))
+            .catch(error => console.log(error))
+    }
     const navItems = <>
         <NavLink
             to="/"
             className={({ isActive, isPending }) =>
-               "mr-4 text-sm " + (isPending ? "pending" : isActive ? "text-pink-400" : "text-white")
+                "mr-4 text-sm " + (isPending ? "pending" : isActive ? "text-pink-400" : "text-white")
             }
         >
             Home
@@ -74,7 +82,15 @@ const Navbar = () => {
                 </ul>
             </div>
             <div className="navbar-end">
-                <a className="btn">Button</a>
+                {
+                    user ? <>
+                        <span>{user.displayName}</span>
+                        <a onClick={handleLogOut} className="btn btn-sm ml-4">Sign out</a>
+                    </>
+                        : <Link to='/login'>
+                            <button className="btn btn-sm">Login</button>
+                        </Link>
+                }
             </div>
         </div>
 

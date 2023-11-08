@@ -12,6 +12,9 @@ import AddFood from './Pages/AddFood.jsx';
 import ManageMyFoods from './Pages/ManageMyFoods.jsx';
 import MyFoodRequest from './Pages/MyFoodRequest.jsx';
 import Login from './Pages/Login.jsx';
+import AuthProvider from './Provider/AuthProvider.jsx';
+import Register from './Components/Register/Register.jsx';
+import PrivateRoute from './Routes/PrivateRoute.jsx';
 
 const router = createBrowserRouter([
   {
@@ -28,20 +31,24 @@ const router = createBrowserRouter([
       },
       {
         path: "addfood",
-        element: <AddFood></AddFood>
+        element: <PrivateRoute><AddFood></AddFood></PrivateRoute>
       },
       {
         path: "managemyfoods",
-        element: <ManageMyFoods></ManageMyFoods>
+        element: <PrivateRoute><ManageMyFoods></ManageMyFoods></PrivateRoute>
       },
       {
         path: "myfoodrequest",
-        element: <MyFoodRequest></MyFoodRequest>
+        element: <PrivateRoute><MyFoodRequest></MyFoodRequest></PrivateRoute>
       },
       {
-        path: "/login",
+        path: "login",
         element: <Login></Login> 
-     }
+      },
+      {
+        path: "register",
+        element: <Register></Register>
+      }
     ],
    
   },
@@ -49,7 +56,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <div className='max-w-screen-2xl mx-auto'>
     <React.StrictMode>
-      <RouterProvider router={router} />
+      <AuthProvider><RouterProvider router={router} /></AuthProvider>
     </React.StrictMode>,
   </div>
 )
