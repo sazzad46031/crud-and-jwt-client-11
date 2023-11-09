@@ -17,11 +17,14 @@ import Register from './Components/Register/Register.jsx';
 import PrivateRoute from './Routes/PrivateRoute.jsx';
 import Fooddetails from './Components/Fooddetails/Fooddetails.jsx';
 import Updatefood from './Components/Updatefood/Updatefood.jsx';
+import ManageSingleFood from './Components/ManageSingleFood/ManageSingleFood.jsx';
+import ErrorPage from './Components/ErrorPage/ErrorPage.jsx';
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -49,8 +52,12 @@ const router = createBrowserRouter([
       },
       {
         path: "updatefood/:id",
-        element: <Updatefood></Updatefood>,
+        element: <PrivateRoute><Updatefood></Updatefood></PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:5000/foods/${params.id}`)
+      },
+      {
+        path: "manage/:id",
+        element: <PrivateRoute><ManageSingleFood></ManageSingleFood></PrivateRoute>
       },
       {
         path: "myfoodrequest",

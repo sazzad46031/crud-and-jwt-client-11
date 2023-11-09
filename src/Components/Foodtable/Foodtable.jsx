@@ -49,6 +49,7 @@ const Foodtable = ({ food }) => {
                     <div className="btn-group btn-group-vertical space-y-4">
                         <Link to={`/updatefood/${_id}`}><button className="btn btn-primary">Update</button></Link>
                         <button onClick={()=>handleDelete(_id)} className="btn btn-primary">X</button>
+                        <Link to={`/manage/${_id}`}><button className="btn btn-primary">Manage</button></Link>
                     </div>
                 </div>
             </div>

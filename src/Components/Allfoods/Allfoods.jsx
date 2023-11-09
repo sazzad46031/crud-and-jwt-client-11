@@ -1,7 +1,8 @@
+import { Link } from "react-router-dom";
 
 
 const Allfoods = ({food}) => {
-    const {foodName, foodImage, foodQuantity, pickupLocation, expiredDate, additionalNotes, donatorName, donatorImage} = food
+    const {_id,foodName, foodImage, foodQuantity, pickupLocation, expiredDate, additionalNotes, donatorName, donatorImage} = food
     return (
         <div>
             
@@ -13,7 +14,7 @@ const Allfoods = ({food}) => {
             <p className="text-xl font-medium">Additional notes: {additionalNotes}</p>
             <p className="text-xl font-medium">Donator name: {donatorName}</p>
             <p className="text-xl font-medium">Donator image: {donatorImage}</p> 
-            <button className="btn btn-primary mt-4">View detail</button>             
+            <Link to={`/fooddetails/${_id}`}> <button className="btn btn-primary mt-4">View detail</button> </Link>        
         </div>
     );
 };

@@ -18,7 +18,7 @@ const Foodcollection = ({food}) => {
             <p className="text-xl font-medium">Donator image: {donatorImage}</p> 
             <div>
                 {
-                    user ? <Link to={`/fooddetails/${_id}`}><button className="btn btn-primary mt-4">View detail</button> </Link>
+                    user ? <Link to={`/fooddetails/${_id}`}><button className="btn btn-primary mt-4">View detail</button></Link>
                     : <Link to="/login"><button className="btn btn-primary mt-4">View detail</button></Link> 
                 }
             </div>

@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 
 const Updatefood = () => {
     const updatefood = useLoaderData()
+    const {_id,foodName, foodImage, foodQuantity, pickupLocation, expiredDate, additionalNotes, foodStatus, donatorName, donatorEmail, donatorImage} = updatefood
     const {user} = useContext(AuthContext)
 
     const handleUpdateFood = event => {
@@ -23,7 +24,7 @@ const Updatefood = () => {
         const donatorImage =form.donatorImage.value
         const updateFood = {foodName, foodImage, foodQuantity, pickupLocation, expiredDate, additionalNotes, foodStatus, donatorName, donatorEmail, donatorImage}
         console.log(updateFood)
-        fetch(`http://localhost:5000/foods/updatefood/${_id}`,{
+        fetch(`http://localhost:5000/foods/${_id}`,{
             method: 'PUT',
             headers : {
                 'content-type' : 'application/json'
@@ -43,6 +44,7 @@ const Updatefood = () => {
             }
         })
     }
+
     return (
         <div className="bg-lime-200 max-w-screen-2xl mx-auto p-24">
         <h2 className="text-5xl text-purple-400 font-bold mb-8 text-center">Update Food</h2>
@@ -52,13 +54,13 @@ const Updatefood = () => {
                     <label className="label">
                         <span className="label-text">Food Name</span>
                     </label>
-                    <input type="text" placeholder="Food Name" name="foodName" className="input w-full input-bordered" />
+                    <input type="text" defaultValue={foodName} name="foodName" className="input w-full input-bordered" />
                 </div>
                 <div className="form-control md:w-1/2 ml-4">
                     <label className="label">
                         <span className="label-text">Food Image</span>
                     </label>
-                    <input type="text" placeholder="Food Image" name="foodImage" className="input w-full input-bordered" />
+                    <input type="text" defaultValue={foodImage} name="foodImage" className="input w-full input-bordered" />
                 </div>
             </div>
             <div className="md:flex mb-8">
@@ -66,13 +68,13 @@ const Updatefood = () => {
                     <label className="label">
                         <span className="label-text">Food Quantity</span>
                     </label>
-                    <input type="number" placeholder="Food Quantity" name="foodQuantity" className="input w-full input-bordered" />
+                    <input type="number" defaultValue={foodQuantity} name="foodQuantity" className="input w-full input-bordered" />
                 </div>
                 <div className="form-control md:w-1/2 ml-4">
                     <label className="label">
                         <span className="label-text">Pickup Location</span>
                     </label>
-                    <input type="text" placeholder="Pickup Location" name="pickupLocation" className="input w-full input-bordered" />
+                    <input type="text" defaultValue={pickupLocation} name="pickupLocation" className="input w-full input-bordered" />
                 </div>
             </div>
             <div className="md:flex mb-8">
@@ -80,13 +82,13 @@ const Updatefood = () => {
                     <label className="label">
                         <span className="label-text">Expired Date</span>
                     </label>
-                    <input type="date" placeholder="Expired Date" name="expiredDate" className="input w-full input-bordered" />
+                    <input type="date" defaultValue={expiredDate} name="expiredDate" className="input w-full input-bordered" />
                 </div>
                 <div className="form-control md:w-1/2 ml-4">
                     <label className="label">
                         <span className="label-text">Additional Notes</span>
                     </label>
-                    <input type="text" placeholder="Additional Notes" name="additionalNotes" className="input w-full input-bordered" />
+                    <input type="text" defaultValue={additionalNotes} name="additionalNotes" className="input w-full input-bordered" />
                 </div>
             </div>
             <div className="md:flex mb-8">
@@ -114,7 +116,7 @@ const Updatefood = () => {
                     <label className="label">
                         <span className="label-text">Food Status</span>
                     </label>
-                    <input type="text" placeholder="Available" name="foodStatus" className="input w-full input-bordered" />
+                    <input type="text" defaultValue={foodStatus} name="foodStatus" className="input w-full input-bordered" />
                 </div>
             </div>
                 <input type="submit" value="Update Food" className="btn btn-block bg-purple-400" />
