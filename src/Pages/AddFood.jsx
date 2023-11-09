@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { AuthContext } from "../Provider/AuthProvider";
+import Swal from "sweetalert2";
 
 
 const AddFood = () => {
@@ -15,8 +16,30 @@ const AddFood = () => {
         const expiredDate =form.expiredDate.value
         const additionalNotes =form.additionalNotes.value
         const foodStatus =form.foodStatus.value
-        const newFood = {foodName, foodImage, foodQuantity, pickupLocation, expiredDate, additionalNotes, foodStatus}
+        const donatorName =form.donatorName.value 
+        const donatorEmail =form.donatorEmail.value
+        const donatorImage =form.donatorImage.value
+        const newFood = {foodName, foodImage, foodQuantity, pickupLocation, expiredDate, additionalNotes, foodStatus, donatorName, donatorEmail, donatorImage}
         console.log(newFood)
+        fetch('http://localhost:5000/foods',{
+            method: 'POST',
+            headers : {
+                'content-type' : 'application/json'
+            },
+            body : JSON.stringify(newFood)
+        })
+        .then(res=> res.json())
+        .then(data=>{
+            console.log(data)
+            if(data.insertedId){
+                Swal.fire({
+                    title: 'success!',
+                    text: 'Food added successfully',
+                    icon: 'success',
+                    confirmButtonText: 'Cool'
+                  })
+            }
+        })
     }
     return (
         <div className="bg-lime-200 max-w-screen-2xl mx-auto p-24">
@@ -35,15 +58,13 @@ const AddFood = () => {
                     </label>
                     <input type="text" placeholder="Food Image" name="foodImage" className="input w-full input-bordered" />
                 </div>
-                
-
             </div>
             <div className="md:flex mb-8">
                 <div className="form-control md:w-1/2">
                     <label className="label">
                         <span className="label-text">Food Quantity</span>
                     </label>
-                    <input type="text" placeholder="Food Quantity" name="foodQuantity" className="input w-full input-bordered" />
+                    <input type="number" placeholder="Food Quantity" name="foodQuantity" className="input w-full input-bordered" />
                 </div>
                 <div className="form-control md:w-1/2 ml-4">
                     <label className="label">
@@ -57,7 +78,7 @@ const AddFood = () => {
                     <label className="label">
                         <span className="label-text">Expired Date</span>
                     </label>
-                    <input type="text" placeholder="Expired Date" name="expiredDate" className="input w-full input-bordered" />
+                    <input type="date" placeholder="Expired Date" name="expiredDate" className="input w-full input-bordered" />
                 </div>
                 <div className="form-control md:w-1/2 ml-4">
                     <label className="label">
@@ -71,13 +92,13 @@ const AddFood = () => {
                     <label className="label">
                         <span className="label-text">Donator Image</span>
                     </label>
-                    <input type="text" defaultValue={user.photoURL} className="input w-full input-bordered" />
+                    <input type="text" defaultValue={user.photoURL} name="donatorImage" className="input w-full input-bordered" />
                 </div>
                 <div className="form-control md:w-1/2 ml-4">
                     <label className="label">
                         <span className="label-text">Donator Name</span>
                     </label>
-                    <input type="text"  defaultValue={user.displayName} className="input w-full input-bordered" />
+                    <input type="text"  defaultValue={user.displayName} name="donatorName" className="input w-full input-bordered" />
                 </div>
             </div>
             <div className="md:flex mb-8">
@@ -85,7 +106,7 @@ const AddFood = () => {
                     <label className="label">
                         <span className="label-text">Donator Email</span>
                     </label>
-                    <input type="text" defaultValue={user.email} className="input w-full input-bordered" />
+                    <input type="text" defaultValue={user.email} name="donatorEmail" className="input w-full input-bordered" />
                 </div>
                 <div className="form-control md:w-1/2 ml-4">
                     <label className="label">
@@ -94,7 +115,7 @@ const AddFood = () => {
                     <input type="text" placeholder="Available" name="foodStatus" className="input w-full input-bordered" />
                 </div>
             </div>
-                <input type="submit" value="Add button" className="btn btn-block bg-purple-400" />
+                <input type="submit" value="Add Food" className="btn btn-block bg-purple-400" />
         </form>
     </div>
     );

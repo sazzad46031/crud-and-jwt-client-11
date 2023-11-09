@@ -2,7 +2,7 @@
 
 const Footer = () => {
     return (
-        <footer className="footer p-10 bg-primary text-base-content">
+        <footer className="footer p-10 bg-primary text-base-content mt-20">
             <aside className="items-center text-white grid-flow-col">
                 <img className="w-10 h-10 rounded-full" src="./logo.png" alt="" />
                 <p className="text-5xl text-white font-bold ml-4">Food Blust</p>
