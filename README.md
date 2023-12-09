@@ -1,8 +1,9 @@
-# React + Vite
+Live link : https://crud-jwt.web.app/
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Main features: 
+1. Any one can login in our website
+2. Any one can take a visit and share their foods with needy people
+3. Needy people can take their desired foods
 
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Technologies:
+Html , Tailwind Css, Daisy ui, Javasrcipt, React, Firebase, Mongodb
